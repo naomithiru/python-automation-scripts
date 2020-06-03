@@ -11,15 +11,15 @@ Created on Tue Jun  2 10:55:44 2020
 # It retrieves all current players born in a particular country (say, Sweden) broken down by position. 
 
 import arcpy
-arcpy.env.workspace = "D:/GIS/Geog485/Lesson3/Project3"
+arcpy.env.workspace = " "
 arcpy.env.overwriteOutput = True
 
 # Define relevant feature classes
-fcRosters = "D:/GIS/Geog485/Lesson3/Project3/nhlrosters.shp"
-fcCountries = "D:/GIS/Geog485/Lesson3/Project3/Countries_WGS84.shp"
+fcRosters = arcpy.GetParameterAsText(0)
+fcCountries = arcpy.GetParameterAsText(1)
 
 # Define a country
-countryName = "Sweden"
+countryName = arcpy.GetParameterAsText(2)
 countryQuery = "CNTRY_NAME = '" + countryName + "'"
 
 try:
@@ -42,7 +42,7 @@ try:
     arcpy.CopyFeatures_management("LeftWing", "/LeftWing.shp")
     
 except:
-    print("Could not create feature layers!")
+    arcpy.AddError("Could not make feature layers")
     
 try:
     # Add fields for height and weight to the new shapefiles
@@ -73,4 +73,4 @@ finally:
     arcpy.Delete_management("SelectedPlayers")
     del row, cursor 
 
-print("Complete!")
+arcpy.AddMessage("Complete!")
