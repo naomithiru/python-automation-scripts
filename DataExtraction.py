@@ -45,7 +45,7 @@ except:
     arcpy.AddError("Could not make feature layers")
     
 try:
-    # Add fields for height and weight to the new shapefiles
+    # Add fields for height in cm and weight in kgs to the new shapefiles
     fieldName1 = "weight_kg"
     fieldName2 = "weight"
     fieldName3 = "height_cm"
@@ -53,7 +53,7 @@ try:
     for fc in ("Centers.shp", "RightWing.shp", "LeftWing.shp"):
         arcpy.AddField_management(fc, fieldName1, "TEXT")
         arcpy.AddField_management(fc, fieldName3, "TEXT")
-
+        # Update new fields using an update cursor
         with arcpy.da.UpdateCursor(fc,(fieldName1, fieldName2, fieldName3, fieldName4)) as cursor:
             for row in cursor:
                 #Update weight_kg field
