@@ -8,7 +8,7 @@ Created on Tue Jun  2 10:55:44 2020
 # Data extraction script
 # This script uses selections and cursors to process some data from a "raw" format into 
 # More specialized datasets for a specific mapping purpose.
-# It retrieves all current players born in a particular country (say, Sweden) broken down by position. 
+# It retrieves all current players born in a particular country broken down by position. 
 
 import arcpy
 arcpy.env.workspace = " "
