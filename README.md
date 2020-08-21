@@ -1,2 +1,2 @@
-# my_geodata_projects
+# geospatial_projects
 
